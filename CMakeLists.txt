@@ -1,0 +1,19 @@
+cmake_minimum_required(VERSION 3.26)
+
+set(CMAKE_CXX_STANDARD 17)
+
+project(AndroidCpp)
+
+file(GLOB_RECURSE SrcFiles src/*.cpp)
+
+add_executable(hello_world ${SrcFiles})
+
+target_include_directories(hello_world PRIVATE
+        "${CMAKE_ANDROID_NDK}/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/")
+
+target_link_directories(hello_world PRIVATE
+        "${CMAKE_ANDROID_NDK}/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/")
+
+target_link_libraries(hello_world PRIVATE
+        liblog.so
+)
