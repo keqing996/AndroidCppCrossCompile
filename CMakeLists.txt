@@ -8,12 +8,11 @@ file(GLOB_RECURSE SrcFiles src/*.cpp)
 
 add_executable(hello_world ${SrcFiles})
 
+# header path, CMAKE_ANDROID_NDK is defined in build.py, points to ndk path
 target_include_directories(hello_world PRIVATE
         "${CMAKE_ANDROID_NDK}/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/")
 
-target_link_directories(hello_world PRIVATE
-        "${CMAKE_ANDROID_NDK}/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/")
-
+# link log library
 target_link_libraries(hello_world PRIVATE
         liblog.so
 )
