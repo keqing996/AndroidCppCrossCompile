@@ -64,6 +64,7 @@ arg_source_path: str = '-S "./"'
 # build output dir
 arg_build_dir: str = '-B "./build/"'
 
+
 def run(args_list: list[str]) -> None:
     args: str = ' '.join(args_list)
 
@@ -79,20 +80,20 @@ def run(args_list: list[str]) -> None:
 
     pass
 
+
 def cmake_generate() -> None:
-    args_list: list[str] = []
-    args_list.append(cmake_path)
-    args_list.append(arg_define_build_type)
-    args_list.append(arg_define_make_exe)
-    args_list.append(arg_define_c_compiler)
-    args_list.append(arg_define_cpp_compiler)
-    args_list.append(arg_define_ndk)
-    args_list.append(arg_define_toolchain)
-    args_list.append(arg_define_abi)
-    args_list.append(arg_define_android_plat)
-    args_list.append(arg_generator)
-    args_list.append(arg_source_path)
-    args_list.append(arg_build_dir)
+    args_list: list[str] = [cmake_path,
+                            arg_define_build_type,
+                            arg_define_make_exe,
+                            arg_define_c_compiler,
+                            arg_define_cpp_compiler,
+                            arg_define_ndk,
+                            arg_define_toolchain,
+                            arg_define_abi,
+                            arg_define_android_plat,
+                            arg_generator,
+                            arg_source_path,
+                            arg_build_dir]
 
     if do_verbose_output:
         args_list.append(arg_define_verbose_output)
@@ -102,12 +103,10 @@ def cmake_generate() -> None:
     
 
 def cmake_build() -> None:
-    args_list: list[str] = []
-    args_list.append(cmake_path)
-    args_list.append('--build "./build/"')
-    args_list.append('--target all')
+    args_list: list[str] = [cmake_path, '--build "./build/"', '--target all']
     run(args_list)
     pass
+
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.DEBUG)
