@@ -2,9 +2,7 @@ cmake_minimum_required(VERSION 3.26)
 
 project(AndroidCpp)
 
-file(GLOB_RECURSE SrcFiles src/*.cpp)
-
-add_executable(hello_world ${SrcFiles})
+add_executable(hello_world src/Logger.cpp src/Main.cpp)
 
 # header path, CMAKE_ANDROID_NDK is defined in CMakePresets.json, points to ndk path
 target_include_directories(hello_world PRIVATE
